@@ -60,13 +60,25 @@ $superheroes = [
       "name" => "Wanda Maximoff",
       "alias" => "Scarlett Witch",
       "biography" => "Notably powerful, Wanda Maximoff has fought both against and with the Avengers, attempting to hone her abilities and do what she believes is right to help the world.",
-  ], 
+  ],
 ];
 
 ?>
-
-<ul>
-<?php foreach ($superheroes as $superhero): ?>
-  <li><?= $superhero['alias']; ?></li>
-<?php endforeach; ?>
-</ul>
+<?php if(!$_GET):?>
+  <ul>
+  <?php foreach ($superheroes as $superhero): ?>
+    <li><?= $superhero['alias']; ?></li>
+  <?php endforeach; ?>
+  </ul>
+<?php else:
+  $search=$_GET['query'];
+  foreach ($superheroes as $superhero):
+    if ($superhero['alias']===$search || $superhero['name']===$search):?>
+      <h3><?= $superhero['alias'];?></h3>
+      <h4>A.K.A. <?= $superhero['name'];?></h4>
+      <p><?= $superhero['biography'];?></p>
+      <?php
+    endif;
+  endforeach;
+endif;
+?>
