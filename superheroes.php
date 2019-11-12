@@ -72,6 +72,7 @@ $superheroes = [
   </ul>
 <?php else:
   $search=$_GET['query'];
+  filter_var($search, FILTER_SANITIZE_STRING);
   foreach ($superheroes as $superhero):
     if ($superhero['alias']===$search || $superhero['name']===$search):?>
       <h3><?= $superhero['alias'];?></h3>
